@@ -2,7 +2,9 @@
 
 Simple ASCII sugographics and animation.
 
-Goals:
-- Implement some liner algebra foncs
-- Draw cicle
-- Anumate it
+
+## Goals:
+
+- [x] Implement some liner algebra foncs
+- [x] Draw cicle
+- [x] Anumate it
