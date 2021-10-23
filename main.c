@@ -25,6 +25,7 @@ int main(void)
 	accel.x = 1;
 	struct timespec timer;
 	for(;;) {
+		printf("\033[1;0H");
 		timer.tv_sec = 0;
 		timer.tv_nsec = 1000000000 / FPS;
 		for(int row = 0; row < HEIGHT; row += 2) {
@@ -50,7 +51,6 @@ int main(void)
 		nanosleep(&timer, NULL);
 		//printf("\033[%dA", HEIGHT);
 		//printf("\033[%dD", WIDTH);
-		printf("\033[1;0H");
 		centr = vec_add(centr, speed);
 		speed = vec_add(speed, accel);
 		if(centr.x > HEIGHT - rad)
