@@ -5,6 +5,6 @@ Simple ASCII sugographics and animation.
 
 ## Goals:
 
-- [x] Implement some liner algebra foncs
-- [x] Draw cicle
-- [x] Anumate it
+- [x] Implement some liner algebra fooncs
+- [x] Draw circle
+- [x] Animate it
