@@ -1,22 +1,14 @@
 #include <stdio.h>
-#include <math.h>
 #include <time.h>
+
+#include "./vect.h"
 
 #define HEIGHT 60
 #define WIDTH 60
 
 #define FPS 30
 
-typedef struct {
-	int x, y;
-} vect;
-
 char symb[] = { ' ', '"', 'O', '_'};
-
-vect vec_init(int x, int y);
-vect vec_sub(vect v1, vect v2);
-vect vec_add(vect v1, vect v2);
-int vec_len(vect v);
 
 int main(void)
 {
@@ -27,12 +19,11 @@ int main(void)
 	speed.y = 1;
 	accel.y = 1;
 	struct timespec timer;
+	timer.tv_sec = 0;
+	timer.tv_nsec = 1000000000 / FPS;
 
 	for(;;) {
 		printf("\033[1;0H");
-
-		timer.tv_sec = 0;
-		timer.tv_nsec = 1000000000 / FPS;
 
 		for(int row = 0; row < HEIGHT; row += 2) {
 			for(int col = 0; col < WIDTH; ++col) {
@@ -62,33 +53,4 @@ int main(void)
 			speed.y = -0.9 * speed.y;
 	}
 	return 0;
-}
-
-vect vec_init(int x, int y)
-{
-	vect res;
-	res.x = x;
-	res.y = y;
-	return res;
-}
-
-vect vec_sub(vect v1, vect v2)
-{
-	vect res;
-	res.x = v1.x - v2.x;
-	res.y = v1.y - v2.y;
-	return res;
-}
-
-vect vec_add(vect v1, vect v2)
-{
-	vect res;
-	res.x = v1.x + v2.x;
-	res.y = v1.y + v2.y;
-	return res;
-}
-
-int vec_len(vect v)
-{
-	return sqrt(v.x * v.x + v.y * v.y);
 }
