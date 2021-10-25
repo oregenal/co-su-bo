@@ -23,7 +23,7 @@ int main(void)
 	timer.tv_nsec = 1000000000 / FPS;
 
 	for(;;) {
-		printf("\033[1;0H");
+		printf("\033[0;0H");
 
 		for(int row = 0; row < HEIGHT; row += 2) {
 			for(int col = 0; col < WIDTH; ++col) {
@@ -51,6 +51,9 @@ int main(void)
 
 		if(centr.y > HEIGHT - rad)
 			speed.y = -0.9 * speed.y;
+
+		/* printf("\033[%dA", HEIGHT);
+		printf("\033[%dD", WIDTH); */
 	}
 	return 0;
 }
