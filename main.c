@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <time.h>
+#include <unistd.h>
 
 #include "./vect.h"
 
@@ -8,7 +8,7 @@
 
 #define FPS 30
 
-char symb[] = { ' ', '"', 'O', '_'};
+char *symb = " \"0_";
 
 int main(void)
 {
@@ -18,13 +18,8 @@ int main(void)
 	centr.x = HEIGHT/2;
 	speed.y = 1;
 	accel.y = 1;
-	struct timespec timer;
-	timer.tv_sec = 0;
-	timer.tv_nsec = 1000000000 / FPS;
 
 	for(;;) {
-		printf("\033[0;0H");
-
 		for(int row = 0; row < HEIGHT; row += 2) {
 			for(int col = 0; col < WIDTH; ++col) {
 				current =  vec_init(col, row);
@@ -44,7 +39,7 @@ int main(void)
 			}
 			putchar('\n');
 		}
-		nanosleep(&timer, NULL);
+		usleep(1000 * 1000 / FPS);
 
 		centr = vec_add(centr, speed);
 		speed = vec_add(speed, accel);
@@ -52,8 +47,8 @@ int main(void)
 		if(centr.y > HEIGHT - rad)
 			speed.y = -0.9 * speed.y;
 
-		/* printf("\033[%dA", HEIGHT);
-		printf("\033[%dD", WIDTH); */
+		printf("\033[%dA", HEIGHT/2);
+		printf("\033[%dD", WIDTH);
 	}
 	return 0;
 }
