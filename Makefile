@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -pedantic -ggdb
+CFLAGS=-Wall -Wextra -std=c11 -pedantic -ggdb
 LIBS=-lm
-BIN=graph
+BIN=ball
 
 $(BIN):main.c vect.c vect.h
 	$(CC) $(CFLAGS) -o $@ main.c vect.c $(LIBS)
